@@ -1,4 +1,4 @@
-from decorators import decorators_text
+from decorators import decorators_text, decorators_params
 
 # Задание из темы "Web-Скрапинг"
 # Сам декоратор в файле "decorators"
@@ -7,7 +7,8 @@ import bs4
 import re
 import requests
 
-@decorators_text
+
+@decorators_params(parameter='/Users/dmitriykonnov/hm-decorators/log.log')
 def start_habr():
     ret = requests.get(URL, headers=HEADERS)
     soup = bs4.BeautifulSoup(ret.text, 'html.parser')
@@ -21,7 +22,7 @@ def start_habr():
         list_start_page.append(start_info)
     return list_start_page
 
-@decorators_text
+# @decorators_text
 def article_page(list_start_page):
     for info in list_start_page:
         URL_PAGE = f'{URL}{info["href"]}'
